@@ -4,9 +4,9 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 //types
 import { typeDefs } from "./schema.js";
 //db
-import { db } from "./db.js";
+import { db } from "./_db.js";
 
-const resolver = {
+const resolvers = {
   Query: {
     games: () => db.games,
     reviews: () => db.reviews,
@@ -16,7 +16,7 @@ const resolver = {
 
 const server = new ApolloServer({
   typeDefs,
-  resolver,
+  resolvers,
 });
 
 const { url } = await startStandaloneServer(server, {
