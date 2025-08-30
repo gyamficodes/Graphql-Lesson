@@ -27,6 +27,9 @@ export const typeDefs = `#graphql
     authors: [Author]
 
     # Query to get a specific item by ID (optional but very useful)
+game(id: ID!): Game
+    review(id: ID!): Review
+    author(id: ID!): Author
 
   }
 `;
