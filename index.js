@@ -11,9 +11,11 @@ const resolvers = {
     games: () => db.games,
     reviews: () => db.reviews,
     authors: () => db.authors,
-    
+
     //     # Query to get a specific item by ID (optional but very useful)
-    game: (_, args) => db.games.find((game) => game.id) === args.id
+    game: (_, args) => db.games.find((game) => game.id  === args.id),
+    review: (_, args) => db.reviews.find((review) => review.id === args.id,) ,
+    author: (_, args) => db.authors.find((author) => author.id === args.id)
   },
 };
 
