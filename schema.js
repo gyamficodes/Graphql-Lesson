@@ -3,21 +3,22 @@ export const typeDefs = `#graphql
     id: ID!
     title: String!
     platform: [String!]!
-    # reviews: [Review!]! # Relationship: A Game can have many Reviews
+    reviews: [Review!]! # Relationship: A Game can have many Reviews
   }
   
   type Review {
     id: ID!
     rating: Int!
     content: String!
-    # author: Author!   # Relationship: A Review is written by one Author
+    author: Author!   # Relationship: A Review is written by one Author
+    game: Game!       # Relationship: A Review is about one Game
   }
 
   type Author {
     id: ID!
     name: String!
     verified: Boolean!
-    # reviews: [Review!]! # Relationship: An Author can have many Reviews
+    reviews: [Review!]! # Relationship: An Author can have many Reviews
   }
 
   type Query {

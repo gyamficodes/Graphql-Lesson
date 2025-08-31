@@ -13,9 +13,36 @@ const resolvers = {
     authors: () => db.authors,
 
     //     # Query to get a specific item by ID (optional but very useful)
-    game: (_, args) => db.games.find((game) => game.id  === args.id),
-    review: (_, args) => db.reviews.find((review) => review.id === args.id,) ,
-    author: (_, args) => db.authors.find((author) => author.id === args.id)
+    game: (_, args) => db.games.find((game) => game.id === args.id),
+    review: (_, args) => db.reviews.find((review) => review.id === args.id),
+    author: (_, args) => db.authors.find((author) => author.id === args.id),
+  },
+
+  //Game has many Reviews
+  Game: {
+    reviews(parent) {
+      return db.reviews.filter((review) => review.game_id === parent.id);
+    },
+  },
+
+  //Review is written by one Author and is about one Game
+  //Author has many Reviews
+  Author: {
+    reviews(parent) {
+      return db.reviews.filter((review) => review.author_id === parent.id);
+    },
+  },
+
+  // Review is written by one Author and is about one Game
+    // Author has many reviews
+    // Game has many reviews
+  Review: {
+    author(parent) {
+      return db.authors.find((author) => author.id === parent.author_id);
+    },
+    game(parent) {
+      return db.games.find((game) => game.id === parent.game_id);
+    },
   },
 };
 
