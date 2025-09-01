@@ -34,8 +34,8 @@ const resolvers = {
   },
 
   // Review is written by one Author and is about one Game
-    // Author has many reviews
-    // Game has many reviews
+  // Author has many reviews
+  // Game has many reviews
   Review: {
     author(parent) {
       return db.authors.find((author) => author.id === parent.author_id);
