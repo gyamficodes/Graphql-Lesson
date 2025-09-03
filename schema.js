@@ -22,7 +22,7 @@ export const typeDefs = `#graphql
   }
 
   type Query {
-    # Query to get all arrays of items
+    # Query to get all arrays of item
     games: [Game]
     reviews: [Review]
     authors: [Author]
@@ -32,5 +32,15 @@ export const typeDefs = `#graphql
     review(id: ID!): Review
     author(id: ID!): Author
 
+  }
+
+  type Mutation {
+    # Mutation to delete a new game
+    deleteGame(id: ID!): [Game]
+    addGame(game: NewGameInput!): Game
+  }
+  input NewGameInput {
+    title: String!
+    platform: [String!]
   }
 `;
