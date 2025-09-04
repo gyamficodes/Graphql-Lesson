@@ -50,6 +50,7 @@ const resolvers = {
       db.games = db.games.filter((game) => game.id !== args.id);
       return db.games;
     },
+    
     addGame: (_, args) => {
       let game = {
         ...args.game,
@@ -59,6 +60,17 @@ const resolvers = {
       return game;
     },
 
+
+    updateGame: (_, args) => {
+      db.games = db.games.map((game) => {
+        if (game.id === args.id) {
+          return { ...game, ...args.edits };
+        }
+        return game;
+    })
+    return db.games.find((game) => game.id === args.id);
+  }
+    
   },
 };
 
